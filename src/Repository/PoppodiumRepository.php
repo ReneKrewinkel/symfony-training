@@ -16,6 +16,10 @@ class PoppodiumRepository extends ServiceEntityRepository
         parent::__construct($registry, Poppodium::class);
     }
 
+    public function fetchAllPoppodia() {
+        return $this->findAll();
+    }
+
 //    /**
 //     * @return Poppodium[] Returns an array of Poppodium objects
 //     */

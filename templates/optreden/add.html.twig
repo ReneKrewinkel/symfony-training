@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toevoegen optreden{% endblock %}
+
+{% block body %}
+<form method="post" action="{{ path('app_optreden_save') }}">
+    <input type="text" name="id" value="{{  optreden.id | default(null) }}"/><br>
+    Podium
+    <select name="poppodium_id">
+        {% for poppodium in poppodia %}
+            <option value="{{ poppodium.id }}" {% if optreden.poppodium.id is defined and optreden.poppodium.id == poppodium.id %}selected{% endif %}>
+                {{ poppodium.naam }}
+            </option>
+        {% endfor %}
+    </select>
+    <br>
+
+    Voorprogramma
+    <select name="voorprogramma_id">
+        {% for voorprogramma in artiesten %}
+            <option value="{{ voorprogramma.id }}">{{ voorprogramma.naam }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    Hoofdprogramma
+    <select name="hoofdprogramma_id">
+        {% for hoofdprogramma in artiesten %}
+            <option value="{{ hoofdprogramma.id }}">{{ hoofdprogramma.naam }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="date" name='datum' value="{{ optreden.datum | date('Y-m-d') | default(null) }}"/><br>
+    <input type="number" name='prijs'  value="{{ optreden.prijs | default(null) }}"/><br>
+    <input type="url" name="ticketUrl"  value="{{  optreden.ticketUrl | default(null) }}"/><br>
+
+    <input type="submit" />
+</form>
+{% endblock %}

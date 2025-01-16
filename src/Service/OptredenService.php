@@ -33,8 +33,13 @@ class OptredenService {
         return $this->optredenRepo->find($id);
     }
 
+    public function fetchAllOptredens() {
+        return $this->optredenRepo->fetchAllOptredens();
+    }
+
     public function saveOptreden($data) {
         $params = [
+            "id" => $data["id"] || null,
             "datum" => new \DateTime($data["datum"]),
             "prijs" => $data["prijs"],
             "ticketUrl" => $data["ticketUrl"],
@@ -45,6 +50,22 @@ class OptredenService {
 
         $optreden = $this->optredenRepo->addOptreden($params);
         return($optreden);
+    }
+
+
+    public function newOptreden() {
+
+        return new Optreden();
+//        return [
+//            "id" => null,
+//            "datum" => null,
+//            "prijs" => null,
+//            "ticketUrl" => null,
+//            "hoofdprogramma" => null,
+//            "voorprogramma" => null,
+//            "poppodium" => null
+//        ];
+
     }
 
 }

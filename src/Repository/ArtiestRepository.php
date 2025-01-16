@@ -16,6 +16,11 @@ class ArtiestRepository extends ServiceEntityRepository
         parent::__construct($registry, Artiest::class);
     }
 
+
+    public function fetchAllArtiesten() {
+        return $this->findAll();
+    }
+
     public function saveArtiest($data): Artiest
     {
         if(isset($data["id"])) {

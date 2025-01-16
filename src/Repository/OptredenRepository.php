@@ -32,7 +32,16 @@ class OptredenRepository extends ServiceEntityRepository
 
 
     public function addOptreden($data) {
-        $optreden = new Optreden();
+
+        if(isset($data["id"])) {
+            $optreden = $this->find($data["id"]);
+            if(!$optreden) {
+                $optreden = new Optreden();
+            }
+        } else {
+            $optreden = new Optreden();
+        }
+
         $optreden->setDatum($data["datum"]);
         $optreden->setPrijs($data["prijs"]);
         $optreden->setTicketUrl($data["ticketUrl"]);
