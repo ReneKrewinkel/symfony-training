@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AgendaController!{% endblock %}
+
+{% block body %}
+<div>
+    <ul>
+        {% for record in data %}
+        <li>
+            {{ record.datum | date('Y-m-d') }} - {{ record.prijs / 100 }}
+            <br/>Voorprogramma: {{ record.voorprogramma.naam }}
+            <br/>Hoofdprogramma: {{ record.hoofdprogramma.naam }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
